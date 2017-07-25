@@ -16,7 +16,7 @@ namespace SuitsMe.Core.Models
     {
         public static Deck GetOrderedDeck(this Deck deck)
         {
-            return new Deck(null);
+            return new Deck(deck.Cards);
         }
     }
 }

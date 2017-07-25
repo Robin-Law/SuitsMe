@@ -17,5 +17,21 @@ namespace SuitsMe.Core.Tests.Models
             var newDeck = oldDeck.GetOrderedDeck();
             Assert.AreNotSame(oldDeck, newDeck);
         }
+
+        [Test]
+        public static void OrderDeckShouldReturnDeckContainingAllCardsOfOldDeck()
+        {
+            var aceOfSpades = new Card(Suit.Spade, Face.Ace);
+            var queenOfHearts = new Card(Suit.Heart, Face.Queen);
+            var cards = new List<Card>
+            {
+                aceOfSpades,
+                queenOfHearts
+            };
+            var oldDeck = new Deck(cards);
+            var newDeck = oldDeck.GetOrderedDeck();
+            // The Assert.Contains signature is a bit messy, IMO. I usually use FluentAssertions for this sort of thing
+            Assert.IsTrue(newDeck.Cards.Contains(aceOfSpades) && newDeck.Cards.Contains(aceOfSpades), "New Deck Should Contain the Ace of Spades and Queen of Hearts!");
+        }
     }
 }
