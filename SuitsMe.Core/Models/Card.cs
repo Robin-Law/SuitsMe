@@ -1,5 +1,3 @@
-﻿using System;
-
-namespace SuitsMe.Core.Models
+﻿namespace SuitsMe.Core.Models
 {
 }
