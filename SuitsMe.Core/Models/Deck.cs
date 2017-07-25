@@ -4,6 +4,11 @@ namespace SuitsMe.Core.Models
 {
     public class Deck
     {
-        public List<Card> Cards { get; set; }
+        public IList<Card> Cards { get; set; }
+
+        public Deck(IList<Card> cards)
+        {
+            Cards = cards;
+        }
     }
 }

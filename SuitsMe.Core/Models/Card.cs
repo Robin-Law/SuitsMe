@@ -29,7 +29,7 @@
 
     public class Card
     {
-        public Card(Face face, Suit suit)
+        public Card(Suit suit, Face face)
         {
             Face = face;
             Suit = suit;
