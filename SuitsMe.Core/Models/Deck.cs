@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace SuitsMe.Core.Models
 {
@@ -16,7 +17,7 @@ namespace SuitsMe.Core.Models
     {
         public static Deck GetOrderedDeck(this Deck deck)
         {
-            return new Deck(deck.Cards);
+            return new Deck(deck.Cards.Select(card => card).ToList());
         }
     }
 }

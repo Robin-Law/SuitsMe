@@ -33,5 +33,13 @@ namespace SuitsMe.Core.Tests.Models
             // The Assert.Contains signature is a bit messy, IMO. I usually use FluentAssertions for this sort of thing
             Assert.IsTrue(newDeck.Cards.Contains(aceOfSpades) && newDeck.Cards.Contains(aceOfSpades), "New Deck Should Contain the Ace of Spades and Queen of Hearts!");
         }
+
+        [Test]
+        public static void OrderDeckShouldReturnNewInstanceOfItsCards()
+        {
+            var oldDeck = new Deck(new List<Card>());
+            var newDeck = oldDeck.GetOrderedDeck();
+            Assert.AreNotSame(oldDeck.Cards, newDeck.Cards);
+        }
     }
 }
