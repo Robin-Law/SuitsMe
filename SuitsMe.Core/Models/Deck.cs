@@ -11,4 +11,12 @@ namespace SuitsMe.Core.Models
             Cards = cards;
         }
     }
+
+    public static class DeckExtensions
+    {
+        public static Deck GetOrderedDeck(this Deck deck)
+        {
+            return deck;
+        }
+    }
 }
