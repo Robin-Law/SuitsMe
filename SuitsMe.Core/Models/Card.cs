@@ -26,4 +26,16 @@
         Queen,
         King
     }
+
+    public class Card
+    {
+        public Card(Face face, Suit suit)
+        {
+            Face = face;
+            Suit = suit;
+        }
+
+        public Suit Suit { get; }
+        public Face Face { get; }
+    }
 }
