@@ -15,7 +15,7 @@ namespace SuitsMe.Core.Models
 
     public static class DeckExtensions
     {
-        public static Deck GetOrderedDeck(this Deck deck)
+        public static Deck GetOrderedCopy(this Deck deck)
         {
             return new Deck(deck.Cards.OrderBy(card => card.Suit).ThenBy(card => card.Face).ToList());
         }
