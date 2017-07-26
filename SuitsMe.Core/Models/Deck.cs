@@ -17,7 +17,7 @@ namespace SuitsMe.Core.Models
     {
         public static Deck GetOrderedDeck(this Deck deck)
         {
-            return new Deck(deck.Cards.Select(card => card).ToList());
+            return new Deck(deck.Cards.OrderBy(card => card.Suit).ThenBy(card => card.Face).ToList());
         }
     }
 }
