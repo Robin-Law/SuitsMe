@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace SuitsMe.Core.Tests
 {
     [TestFixture]
-    class DeckTests
+    class DeckExtensionsTests
     {
         private static readonly Card AceOfSpades = new Card(Suit.Spade, Face.Ace);
         private static readonly Card QueenOfHearts = new Card(Suit.Heart, Face.Queen);
