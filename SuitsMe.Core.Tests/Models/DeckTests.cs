@@ -75,6 +75,8 @@ namespace SuitsMe.Core.Tests.Models
         #endregion
 
         #region DeckExtensions.GetShuffledCopy
+        [Test]
+        public static void GetShuffledCopyShouldReturnDeckGivenDeck() => Assert.IsInstanceOf<Deck>(new Deck(new List<Card>()).GetShuffledCopy());
         #endregion
     }
 }
