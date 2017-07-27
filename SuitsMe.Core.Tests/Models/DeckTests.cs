@@ -56,9 +56,11 @@ namespace SuitsMe.Core.Tests.Models
                 QueenOfHearts,
                 SevenOfDiamonds
             };
-            var expectedIndexes = new[] {0, 1, 2, 3};
+            
             var oldDeck = new Deck(cards);
             var newDeck = oldDeck.GetOrderedCopy();
+
+            var expectedIndexes = new[] {0, 1, 2, 3};
             var actualIndexes = new[]
             {
                 newDeck.Cards.IndexOf(SevenOfDiamonds),
@@ -66,6 +68,7 @@ namespace SuitsMe.Core.Tests.Models
                 newDeck.Cards.IndexOf(QueenOfHearts),
                 newDeck.Cards.IndexOf(AceOfSpades)
             };
+
             Assert.AreEqual(expectedIndexes, actualIndexes, $"Values should be ordered! Got {string.Join(", ", actualIndexes)}!");
         }
     }
