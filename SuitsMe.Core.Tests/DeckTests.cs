@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using NUnit.Framework;
-using SuitsMe.Core.Models;
 
-namespace SuitsMe.Core.Tests.Models
+namespace SuitsMe.Core.Tests
 {
     [TestFixture]
     class DeckTests

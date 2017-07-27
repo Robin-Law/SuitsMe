@@ -1,4 +1,4 @@
-﻿namespace SuitsMe.Core.Models
+﻿namespace SuitsMe.Core
 {
     //Per bridge rules (Ascending Alphabetical Order)
     //https://en.wikipedia.org/wiki/High_card_by_suit
