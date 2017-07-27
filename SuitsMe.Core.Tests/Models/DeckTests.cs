@@ -13,6 +13,7 @@ namespace SuitsMe.Core.Tests.Models
         private static readonly Card SevenOfDiamonds = new Card(Suit.Diamond, Face.Seven);
         private static readonly Card EightOfDiamonds = new Card(Suit.Diamond, Face.Eight);
 
+        #region DeckExtensions.GetOrderedCopy
         [Test]
         public static void GetOrderedCopyShouldReturnDeckGivenDeck() => Assert.IsInstanceOf<Deck>(new Deck(new List<Card>()).GetOrderedCopy());
 
@@ -71,5 +72,9 @@ namespace SuitsMe.Core.Tests.Models
 
             Assert.AreEqual(expectedIndexes, actualIndexes, $"Values should be ordered! Got {string.Join(", ", actualIndexes)}!");
         }
+        #endregion
+
+        #region DeckExtensions.GetShuffledCopy
+        #endregion
     }
 }
