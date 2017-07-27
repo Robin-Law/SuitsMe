@@ -117,17 +117,14 @@ namespace SuitsMe.Core.Tests
 
             int[] GetCardIndexes(Deck deckToIndex) => fullDeck.Cards.Select(card => deckToIndex.Cards.IndexOf(card)).ToArray();
 
-            var oldDeckIndexes = GetCardIndexes(fullDeck);
-            var iterations = new List<int[]>
+            var fullDeckIndexes = GetCardIndexes(fullDeck);
+            var iterations = new List<int[]>();
+            for (int iteration = 0; iteration <= 50; iteration++)
             {
-                GetCardIndexes(fullDeck.GetShuffledCopy()),
-                GetCardIndexes(fullDeck.GetShuffledCopy()),
-                GetCardIndexes(fullDeck.GetShuffledCopy()),
-                GetCardIndexes(fullDeck.GetShuffledCopy()),
-                GetCardIndexes(fullDeck.GetShuffledCopy())
-            };
+                iterations.Add(GetCardIndexes(fullDeck.GetShuffledCopy()));
+            }
 
-            Assert.That(iterations, Has.None.EqualTo(oldDeckIndexes));
+            Assert.That(iterations, Has.None.EqualTo(fullDeckIndexes));
         }
 
         private static Deck GetFullOrderedDeck()
