@@ -77,6 +77,37 @@ namespace SuitsMe.Core.Tests.Models
         #region DeckExtensions.GetShuffledCopy
         [Test]
         public static void GetShuffledCopyShouldReturnDeckGivenDeck() => Assert.IsInstanceOf<Deck>(new Deck(new List<Card>()).GetShuffledCopy());
+
+
+        [Test]
+        public static void GetShuffledCopyShouldReturnNewInstanceOfDeck()
+        {
+            var oldDeck = new Deck(new List<Card>());
+            var newDeck = oldDeck.GetShuffledCopy();
+            Assert.AreNotSame(oldDeck, newDeck);
+        }
+
+        [Test]
+        public static void GetShuffledCopyShouldReturnDeckContainingAllCardsOfOldDeck()
+        {
+            var cards = new List<Card>
+            {
+                AceOfSpades,
+                QueenOfHearts
+            };
+            var oldDeck = new Deck(cards);
+            var newDeck = oldDeck.GetShuffledCopy();
+            // The Assert.Contains signature is a bit messy, IMO. I usually use FluentAssertions for this sort of thing
+            Assert.IsTrue(newDeck.Cards.Contains(AceOfSpades) && newDeck.Cards.Contains(AceOfSpades), "New Deck Should Contain the Ace of Spades and Queen of Hearts!");
+        }
+
+        [Test]
+        public static void GetShuffledCopyShouldReturnNewInstanceOfItsCards()
+        {
+            var oldDeck = new Deck(new List<Card>());
+            var newDeck = oldDeck.GetShuffledCopy();
+            Assert.AreNotSame(oldDeck.Cards, newDeck.Cards);
+        }
         #endregion
     }
 }

@@ -22,7 +22,7 @@ namespace SuitsMe.Core.Models
 
         public static Deck GetShuffledCopy(this Deck deck)
         {
-            return new Deck(new List<Card>());
+            return new Deck(new List<Card>(deck.Cards));
         }
     }
 }
