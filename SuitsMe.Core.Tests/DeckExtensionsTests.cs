@@ -114,18 +114,18 @@ namespace SuitsMe.Core.Tests
         public static void GetShuffledReturnsRandomlyOrderedCards()
         {
             var fullDeck = GetFullOrderedDeck();
-
-            int[] GetCardIndexes(Deck deckToIndex) => fullDeck.Cards.Select(card => deckToIndex.Cards.IndexOf(card)).ToArray();
-
-            var fullDeckIndexes = GetCardIndexes(fullDeck);
+            var fullDeckIndexes = GetCardIndexes(fullDeck, fullDeck);
             var iterations = new List<int[]>();
             for (int iteration = 0; iteration <= 50; iteration++)
             {
-                iterations.Add(GetCardIndexes(fullDeck.GetShuffledCopy()));
+                iterations.Add(GetCardIndexes(fullDeck, fullDeck.GetShuffledCopy()));
             }
 
             Assert.That(iterations, Has.None.EqualTo(fullDeckIndexes));
         }
+
+        private static int[] GetCardIndexes(Deck referenceDeck, Deck deckToIndex) =>
+            referenceDeck.Cards.Select(card => deckToIndex.Cards.IndexOf(card)).ToArray();
 
         private static Deck GetFullOrderedDeck()
         {
