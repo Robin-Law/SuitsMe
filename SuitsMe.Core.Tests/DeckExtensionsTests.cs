@@ -144,7 +144,19 @@ namespace SuitsMe.Core.Tests
             var fullDeck = new Deck(cards);
             return fullDeck;
         }
-
         #endregion
+
+        [Test]
+        public static void CanShuffleThenOrderAndHaveOrderedDeck()
+        {
+            var fullDeck = GetFullOrderedDeck();
+            var fullDeckIndexes = GetCardIndexes(fullDeck, fullDeck);
+            var shuffledDeck = fullDeck.GetShuffledCopy();
+            var shuffledDeckIndexes = GetCardIndexes(fullDeck, shuffledDeck);
+            var orderedDeck = shuffledDeck.GetOrderedCopy();
+            var orderedDeckIndexes = GetCardIndexes(fullDeck, orderedDeck);
+            Assert.That(shuffledDeckIndexes, Is.Not.EqualTo(fullDeckIndexes).And.Not.EqualTo(orderedDeckIndexes));
+            Assert.That(orderedDeckIndexes, Is.EqualTo(fullDeckIndexes));
+        }
     }
 }
