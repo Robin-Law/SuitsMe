@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace SuitsMe.Core.Tests
@@ -106,6 +108,46 @@ namespace SuitsMe.Core.Tests
             var newDeck = oldDeck.GetShuffledCopy();
             Assert.AreNotSame(oldDeck.Cards, newDeck.Cards);
         }
+
+        [Test]
+        //[Ignore("Randomness is, by definition, unpredictable. Given enough iterations of this test, it will fail despite the code under test having worked as intended.")]
+        public static void GetShuffledReturnsRandomlyOrderedCards()
+        {
+            var fullDeck = GetFullOrderedDeck();
+
+            int[] GetCardIndexes(Deck deckToIndex) => fullDeck.Cards.Select(card => deckToIndex.Cards.IndexOf(card)).ToArray();
+
+            var oldDeckIndexes = GetCardIndexes(fullDeck);
+            var iterations = new List<int[]>
+            {
+                GetCardIndexes(fullDeck.GetShuffledCopy()),
+                GetCardIndexes(fullDeck.GetShuffledCopy()),
+                GetCardIndexes(fullDeck.GetShuffledCopy()),
+                GetCardIndexes(fullDeck.GetShuffledCopy()),
+                GetCardIndexes(fullDeck.GetShuffledCopy())
+            };
+
+            Assert.That(iterations, Has.None.EqualTo(oldDeckIndexes));
+        }
+
+        private static Deck GetFullOrderedDeck()
+        {
+            var suits = (Suit[]) Enum.GetValues(typeof(Suit));
+            var faces = (Face[]) Enum.GetValues(typeof(Face));
+            IList<Card> cards = new List<Card>();
+            // Gross but Enum.GetValues(...) is weird.
+            foreach (var suit in suits)
+            {
+                foreach (var face in faces)
+                {
+                    cards.Add(new Card(suit, face));
+                }
+            }
+
+            var fullDeck = new Deck(cards);
+            return fullDeck;
+        }
+
         #endregion
     }
 }
